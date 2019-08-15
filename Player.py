@@ -6,7 +6,6 @@ import os
 
 #create window and frame
 player =  tkr.Tk()
-#frame_up
 
 
 #adding RGB scheme 
@@ -23,13 +22,13 @@ player.configure(bg = "grey")
 
 
 #add playlist
-os.chdir("/home/user/Desktop/projects/PyMusPlayer")
+os.chdir("/home/user/Desktop/projects/PyMusPlayer/Ignore data")
 print(os.getcwd)
 songlist = os.listdir()
 
 
 #playlist input
-playlist = tkr.Listbox(player, highlightcolor = "blue", selectmode = tkr.SINGLE)
+playlist = tkr.Listbox(player, highlightcolor = "blue", selectmode = tkr.SINGLE, bg = _from_rgb((44, 44, 44)) , fg = _from_rgb((225,225,225)), highlightbackground = _from_rgb((60,60,60)))
 print(songlist)
 for item in songlist:
     pos = 0
@@ -51,14 +50,25 @@ def Play():
 def ExitPlayer():
     pygame.mixer.music.stop()
 
+def Pause():
+    pygame.mixer.music.pause()
+
+def UnPause():
+    pygame.mixer.music.unpause()
+
+
 #add buttons
-ButtStop = tkr.Button(player, width = 15, height = 4, text = "STOP", command = ExitPlayer) 
+ButtStop = tkr.Button(player, width = 15, height = 3, text = "STOP", command = ExitPlayer) 
 ButtStop.config(bg = _from_rgb((44, 44, 44)) , fg = _from_rgb((225,225,225)), highlightbackground = _from_rgb((60,60,60)))
 
-ButtPlay = tkr.Button(player, width = 15, height = 4, text = "PLAY", command = Play)
+ButtPlay = tkr.Button(player, width = 15, height = 3, text = "PLAY", command = Play)
 ButtPlay.config(bg = _from_rgb((44, 44, 44)) , fg = _from_rgb((225,225,225)), highlightbackground = _from_rgb((60,60,60)))
 
+ButtPause = tkr.Button(player, width = 15, height = 3, text = "PAUSE", command = Pause) 
+ButtPause.config(bg = _from_rgb((44, 44, 44)) , fg = _from_rgb((225,225,225)), highlightbackground = _from_rgb((60,60,60)))
 
+ButtUnPause = tkr.Button(player, width = 15, height = 3, text = "UNPAUSE", command = UnPause)
+ButtUnPause.config(bg = _from_rgb((44, 44, 44)) , fg = _from_rgb((225,225,225)), highlightbackground = _from_rgb((60,60,60)))
 #song name
 var = tkr.StringVar()
 songtitle = tkr.Label(player, textvariable = var)
@@ -66,8 +76,13 @@ songtitle = tkr.Label(player, textvariable = var)
 
 #place widgets
 songtitle.pack(side = "top", anchor = "s")
-ButtStop.pack(side = "bottom", fill = "x")
-ButtPlay.pack(side = "bottom", fill = "x")
+
+ButtPlay.pack(fill = "x")
+ButtStop.pack(fill = "x")
+
+ButtPause.pack(fill = "x")
+ButtUnPause.pack(fill = "x")
+
 playlist.pack(fill = 'both', expand = 'yes')
 
 
