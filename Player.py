@@ -1,8 +1,8 @@
 #import modules
 import tkinter as tkr
+from tkinter import filedialog;
 import pygame
 import os
-
 
 #create window and frame
 player =  tkr.Tk()
@@ -20,7 +20,10 @@ player.configure(bg =  _from_rgb((44, 44, 44)))
 
 
 #add playlist
-os.chdir("/home/user/Desktop/projects/PyMusPlayer/Ignore data")
+#os.chdir("/home/user/Desktop/projects/PyMusPlayer/Ignore data")
+file_path = tkinter.filedialog.
+
+
 #print(os.getcwd)
 songlist = os.listdir()
 
