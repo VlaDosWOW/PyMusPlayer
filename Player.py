@@ -20,25 +20,21 @@ player.configure(bg =  _from_rgb((44, 44, 44)))
 
 
 #add playlist
-#os.chdir("/home/user/Desktop/projects/PyMusPlayer/Ignore data")
-file_path = tkinter.filedialog.
-
-
-#print(os.getcwd)
+os.chdir("/home/user/Desktop/projects/PyMusPlayer/Ignore data")
 songlist = os.listdir()
+print(songlist)
+
+#playlist input
+playlist = tkr.Listbox(player, highlightcolor = "blue", selectmode = tkr.SINGLE, bg = _from_rgb((44, 44, 44)) , fg = _from_rgb((225,225,225)), highlightbackground = _from_rgb((60,60,60)))
+for item in songlist:
+    pos = 0
+    playlist.insert(pos, item)
+    pos += 1
 
 
 #volume input
 VolumeLevel = tkr.Scale(player, from_ = 1.0, to_ = 100.0, orient = tkr.HORIZONTAL, resolution = 1.0)
 VolumeLevel.config(bg = _from_rgb((44, 44, 44)) , fg = _from_rgb((225,225,225)), highlightbackground = _from_rgb((60,60,60)))
-
-#playlist input
-playlist = tkr.Listbox(player, highlightcolor = "blue", selectmode = tkr.SINGLE, bg = _from_rgb((44, 44, 44)) , fg = _from_rgb((225,225,225)), highlightbackground = _from_rgb((60,60,60)))
-#print(songlist)
-for item in songlist:
-    pos = 0
-    playlist.insert(pos, item)
-    pos += 1
 
 
 #PyGame init
@@ -67,6 +63,21 @@ def UnPause():
     print(pygame.mixer.music.get_volume())
     print(VolumeLevel.get())
 
+def Browse():
+    global songlist, playlist
+    os.chdir(filedialog.askdirectory())
+    
+    print(songlist, playlist )
+    for i in songlist:
+        playlist.delete(0)
+
+    songlist = os.listdir()
+    print(songlist)
+    for item in songlist:
+        pos = 0
+        playlist.insert(pos, item)
+        pos += 1
+
 
 #add buttons
 ButtStop = tkr.Button(player, width = 15, height = 1, text = "STOP", command = ExitPlayer) 
@@ -80,6 +91,11 @@ ButtPause.config(bg = _from_rgb((44, 44, 44)) , fg = _from_rgb((225,225,225)), h
 
 ButtUnPause = tkr.Button(player, width = 15, height = 1, text = "UNPAUSE", command = UnPause)
 ButtUnPause.config(bg = _from_rgb((44, 44, 44)) , fg = _from_rgb((225,225,225)), highlightbackground = _from_rgb((60,60,60)))
+
+ButtBrowse = tkr.Button(player, width = 15, height = 1, text = "BROWSE", command = Browse)
+ButtBrowse.config(bg = _from_rgb((44, 44, 44)) , fg = _from_rgb((225,225,225)), highlightbackground = _from_rgb((60,60,60)))
+
+
 #song name
 var = tkr.StringVar()
 songtitle = tkr.Label(player, textvariable = var)
@@ -87,7 +103,7 @@ songtitle.config(bg = _from_rgb((44, 44, 44)) , fg = _from_rgb((225,225,225)), h
 
 
 #place widgets
-songtitle.pack(side = "top", fill = 'x')
+songtitle.pack(fill = 'x')
 
 ButtPlay.pack(fill = "x")
 ButtStop.pack(fill = "x")
@@ -96,6 +112,8 @@ ButtPause.pack(fill = "x")
 ButtUnPause.pack(fill = "x")
 
 VolumeLevel.pack(fill = 'x')
+
+ButtBrowse.pack(fill = 'x')
 
 playlist.pack(fill = 'both', expand = 'yes')
 
