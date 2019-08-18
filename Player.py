@@ -1,6 +1,6 @@
 #import modules
 import tkinter as tkr
-from tkinter import filedialog;
+import tkinter.filedialog
 import pygame
 import os
 import sys
@@ -50,7 +50,6 @@ VolumeLevel.config(bg = _from_rgb((44, 44, 44)) , fg = _from_rgb((225,225,225)),
 
 
 #PyGame init
-pygame.init()
 pygame.mixer.init()
 
 
@@ -77,10 +76,10 @@ def UnPause():
 
 def Browse():
     global songlist, playlist
-    os.chdir(filedialog.askdirectory())
+    os.chdir(tkinter.filedialog.askdirectory())
     
     print(songlist, playlist )
-    for i in songlist:
+    for songlist in songlist:
         playlist.delete(0)
 
     songlist = os.listdir()
