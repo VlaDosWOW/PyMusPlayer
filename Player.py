@@ -28,7 +28,7 @@ print(os)
 '''
 
 
-#going to playlist folder (depending on system)
+#going to playlist folder
 home = os.path.expanduser("~")
 os.chdir(home)
 
