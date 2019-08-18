@@ -33,7 +33,7 @@ home = os.path.expanduser("~")
 os.chdir(home)
 
 songlist = os.listdir()
-print(songlist)
+#print(songlist)
 
 
 #playlist input
@@ -42,6 +42,10 @@ for item in songlist:
     pos = 0
     playlist.insert(pos, item)
     pos += 1
+
+
+#creating iist for music folders
+MusFolders = []
 
 
 #volume input
@@ -59,8 +63,7 @@ def Play():
     var.set(playlist.get(tkr.ACTIVE))
     pygame.mixer.music.play()
     pygame.mixer.music.set_volume(VolumeLevel.get() / 100)
-    print(pygame.mixer.music.get_volume())
-    print(VolumeLevel.get())
+    pygame.mixer.music.get_volume()
 
 def ExitPlayer():
     pygame.mixer.music.stop()
@@ -71,19 +74,19 @@ def Pause():
 def UnPause():
     pygame.mixer.music.unpause()
     pygame.mixer.music.set_volume(VolumeLevel.get() / 100)
-    print(pygame.mixer.music.get_volume())
-    print(VolumeLevel.get())
+    pygame.mixer.music.get_volume()
+    VolumeLevel.get()
 
 def Browse():
     global songlist, playlist
     os.chdir(tkinter.filedialog.askdirectory())
     
-    print(songlist, playlist )
+    #print(songlist, playlist)
     for songlist in songlist:
         playlist.delete(0)
 
-    songlist = os.listdir()
-    print(songlist)
+    #songlist = os.listdir()
+    #print(songlist)
     for item in songlist:
         pos = 0
         playlist.insert(pos, item)
