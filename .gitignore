@@ -7,7 +7,5 @@ icon.ico
 dist
 build
 __pycache__
-
-
-#soon... 
+# soon..
 data.csv
