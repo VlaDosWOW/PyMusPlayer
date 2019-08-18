@@ -3,6 +3,8 @@ import tkinter as tkr
 from tkinter import filedialog;
 import pygame
 import os
+import sys
+
 
 #create window and frame
 player =  tkr.Tk()
@@ -19,10 +21,20 @@ player.geometry("250x340")
 player.configure(bg =  _from_rgb((44, 44, 44)))
 
 
-#add playlist
-os.chdir("/home/user/Desktop/projects/PyMusPlayer/Ignore data")
+#os checker (now we don't need it)
+'''
+your_os = sys.platform
+print(os)
+'''
+
+
+#going to playlist folder (depending on system)
+home = os.path.expanduser("~")
+os.chdir(home)
+
 songlist = os.listdir()
 print(songlist)
+
 
 #playlist input
 playlist = tkr.Listbox(player, highlightcolor = "blue", selectmode = tkr.SINGLE, bg = _from_rgb((44, 44, 44)) , fg = _from_rgb((225,225,225)), highlightbackground = _from_rgb((60,60,60)))
