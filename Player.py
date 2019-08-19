@@ -78,14 +78,18 @@ def UnPause():
     VolumeLevel.get()
 
 def Browse():
-    global songlist, playlist
+    global songlist, playlist, MusFolders
     os.chdir(tkinter.filedialog.askdirectory())
     
-    #print(songlist, playlist)
+    print(MusFolders)
+    MusFolders.append(os.getcwd())
+    print(MusFolders)
+
+    print(songlist)
     for songlist in songlist:
         playlist.delete(0)
 
-    #songlist = os.listdir()
+    songlist = os.listdir()
     #print(songlist)
     for item in songlist:
         pos = 0
