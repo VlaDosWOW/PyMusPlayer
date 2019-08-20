@@ -1,6 +1,6 @@
 #import modules
 import tkinter as tkr
-from tkinter import filedialog;
+import tkinter.filedialog
 import pygame
 import os
 import sys
@@ -28,12 +28,12 @@ print(os)
 '''
 
 
-#going to playlist folder (depending on system)
+#going to playlist folder
 home = os.path.expanduser("~")
 os.chdir(home)
 
 songlist = os.listdir()
-print(songlist)
+#print(songlist)
 
 
 #playlist input
@@ -44,13 +44,16 @@ for item in songlist:
     pos += 1
 
 
+#creating iist for music folders
+MusFolders = []
+
+
 #volume input
 VolumeLevel = tkr.Scale(player, from_ = 1.0, to_ = 100.0, orient = tkr.HORIZONTAL, resolution = 1.0)
 VolumeLevel.config(bg = _from_rgb((44, 44, 44)) , fg = _from_rgb((225,225,225)), highlightbackground = _from_rgb((60,60,60)))
 
 
 #PyGame init
-pygame.init()
 pygame.mixer.init()
 
 
@@ -60,8 +63,7 @@ def Play():
     var.set(playlist.get(tkr.ACTIVE))
     pygame.mixer.music.play()
     pygame.mixer.music.set_volume(VolumeLevel.get() / 100)
-    print(pygame.mixer.music.get_volume())
-    print(VolumeLevel.get())
+    pygame.mixer.music.get_volume()
 
 def ExitPlayer():
     pygame.mixer.music.stop()
@@ -72,19 +74,23 @@ def Pause():
 def UnPause():
     pygame.mixer.music.unpause()
     pygame.mixer.music.set_volume(VolumeLevel.get() / 100)
-    print(pygame.mixer.music.get_volume())
-    print(VolumeLevel.get())
+    pygame.mixer.music.get_volume()
+    VolumeLevel.get()
 
 def Browse():
-    global songlist, playlist
-    os.chdir(filedialog.askdirectory())
+    global songlist, playlist, MusFolders
+    os.chdir(tkinter.filedialog.askdirectory())
     
-    print(songlist, playlist )
-    for i in songlist:
+    print(MusFolders)
+    MusFolders.append(os.getcwd())
+    print(MusFolders)
+
+    print(songlist)
+    for songlist in songlist:
         playlist.delete(0)
 
     songlist = os.listdir()
-    print(songlist)
+    #print(songlist)
     for item in songlist:
         pos = 0
         playlist.insert(pos, item)
