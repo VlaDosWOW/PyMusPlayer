@@ -1,11 +1,12 @@
 Ignored data
 Ignored data 2
-.vscode
-test.py
-Player.spec
-icon.ico
 dist
 build
 __pycache__
-# soon..
-data.csv
+.vscode
+
+test.py
+Player.spec
+
+data.json
+Player2.py
