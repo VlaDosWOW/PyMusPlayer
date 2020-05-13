@@ -10,7 +10,7 @@ This is a beta of Music Player with design like Spotify (now it isn't)
 
 3.Run Player.py
 
-4.Click BROWSE buttun
+4.Click BROWSE button
 
 5.In new file manager window select folder where your music is, press OK
 
